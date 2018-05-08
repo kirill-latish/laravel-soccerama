@@ -31,6 +31,7 @@ class SoccerAPIClient {
         }
 
         $this->withoutData = empty(config('soccerapi.without_data')) ? false : config('soccerapi.without_data');
+        $this->timezone = empty(config('soccerapi.timezone')) ? false : config('soccerapi.timezone');
     }
 
     protected function call($url, $hasData = false)
@@ -43,6 +44,10 @@ class SoccerAPIClient {
         if(count($this->include))
         {
             $query['include'] = $this->include;
+        }
+        if ($this->timezone)
+        {
+            $query['tz'] = $this->timezone;
         }
 
         $response = $this->client->get($url, ['query' => $query]);
