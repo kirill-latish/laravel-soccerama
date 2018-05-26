@@ -19,7 +19,18 @@ class Fixture extends SoccerAPIClient {
             $toDate = $toDate->format('Y-m-d');
         }
 
-        return $this->callData('fixtures/between/' . $fromDate . '/' .$toDate);
+        $link = $this->callData('fixtures/between/' . $fromDate . '/' .$toDate);
+
+        $total_pages = $link->meta->pagination->total_pages;
+        $dados = [];
+
+        for($i = 0; $i < $total_pages; $i++){
+            $this->setPage($i);
+            $link = $this->callData('fixtures/between/' . $fromDate . '/' .$toDate);
+            $dados = array_merge($dados, $link->data);
+        }
+
+        return $dados;
     }
 
     public function byDate($date)
