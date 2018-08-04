@@ -41,8 +41,13 @@ class SoccerAPIClient {
             'per_page' => $this->perPage,
             'page' => $this->page
         ];
-        if(count($this->include_array))
-        {
+
+        if (is_array($this->include_array)) {
+            if(count($this->include_array))
+            {
+                $query['include'] = $this->include;
+            }
+        } elseif ( strlen($this->include_array)) {
             $query['include'] = $this->include;
         }
 
