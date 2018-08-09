@@ -13,6 +13,7 @@ class SoccerAPIClient {
     protected $apiToken;
     protected $withoutData;
     protected $include = [];
+    protected $include_array = [];
     protected $perPage = 50;
     protected $page = 1;
     protected $timezone;
@@ -42,12 +43,18 @@ class SoccerAPIClient {
             'per_page' => $this->perPage,
             'page' => $this->page
         ];
-        if(!empty($this->include))
-        {
+
+        if (is_array($this->include_array)) {
+            if(count($this->include_array))
+            {
+                $query['include'] = $this->include;
+            }
+        } elseif ( strlen($this->include_array)) {
             $query['include'] = $this->include;
         }
+
         if ($this->timezone)
-        {
+        {   
             $query['tz'] = $this->timezone;
         }
 
@@ -87,6 +94,7 @@ class SoccerAPIClient {
      */
     public function setInclude($include)
     {
+        $this->include_array = $include;
         if(is_array($include) && !empty($include))
         {
             $include = implode(',', $include);
