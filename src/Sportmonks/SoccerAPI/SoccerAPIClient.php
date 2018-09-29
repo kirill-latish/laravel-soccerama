@@ -13,6 +13,7 @@ class SoccerAPIClient {
     protected $apiToken;
     protected $withoutData;
     protected $include = [];
+    protected $leagues = [];
     protected $perPage = 50;
     protected $page = 1;
     protected $timezone;
@@ -45,6 +46,10 @@ class SoccerAPIClient {
         if(!empty($this->include))
         {
             $query['include'] = $this->include;
+        }
+        if(!empty($this->leagues))
+        {
+            $query['leagues'] = $this->leagues;
         }
         if ($this->timezone)
         {
@@ -93,6 +98,21 @@ class SoccerAPIClient {
         }
 
         $this->include = $include;
+
+        return $this;
+    }
+
+    /**
+     * @param $leagues - string or array of leagues to only return fixtures for those leagues
+     */
+    public function setLeagues($leagues)
+    {
+        if(is_array($leagues) && !empty($leagues))
+        {
+            $leagues = implode(',', $leagues);
+        }
+
+        $this->leagues = $leagues;
 
         return $this;
     }
