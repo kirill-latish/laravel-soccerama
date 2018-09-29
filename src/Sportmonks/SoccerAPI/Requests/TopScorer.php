@@ -11,4 +11,9 @@ class TopScorer extends SoccerAPIClient {
         return $this->callData('topscorers/season/' . $seasonId);
     }
 
+    public function aggregatedBySeasonId($seasonId)
+    {
+        return $this->callData('topscorers/season/' . $seasonId . '/aggregated');
+    }
+
 }
