@@ -3,7 +3,9 @@
 namespace Sportmonks\SoccerAPI;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use Sportmonks\SoccerAPI\Exceptions\ApiRequestException;
+use stdClass;
 
 class SoccerAPIClient {
 
@@ -56,7 +58,20 @@ class SoccerAPIClient {
             $query['leagues'] = $this->leagues;
         }
 
-        $response = $this->client->get($url, ['query' => $query]);
+        try {
+            $response = $this->client->get($url, ['query' => $query]);
+        } catch (ClientException $response) {
+            preg_match('/.*"message":"(.*)",/', $response->getMessage(), $matches);
+
+            $error = new \stdClass();
+            $error->error_code = $response->getResponse()->getStatusCode();
+            $error->error_message = $matches[1];
+
+            return $error;
+            
+            // other option would be
+            //abort($response->getResponse()->getStatusCode(), $matches[1]);
+        }
 
         $body = json_decode($response->getBody()->getContents());
 
