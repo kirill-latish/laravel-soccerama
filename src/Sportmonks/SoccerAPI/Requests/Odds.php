@@ -15,6 +15,11 @@ class Odds extends SoccerAPIClient {
     {
         return $this->callData('odds/fixture/' . $matchId . '/bookmaker/' . $bookmakerId);
     }
+    
+    public function byMatchAndMarketId($matchId, $marketId)
+    {
+        return $this->callData('odds/fixture/' . $matchId . '/market/' . $marketId);
+    }    
 
     public function inplayByMatchId($matchId)
     {
