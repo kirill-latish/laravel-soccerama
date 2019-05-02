@@ -14,6 +14,7 @@ class SoccerAPIClient {
     protected $withoutData;
     protected $include = [];
     protected $leagues = [];
+    protected $params  = [];
     protected $perPage = 50;
     protected $page = 1;
     protected $timezone;
@@ -54,6 +55,13 @@ class SoccerAPIClient {
         if(!empty($this->leagues))
         {
             $query['leagues'] = $this->leagues;
+        }
+        if(!empty($this->params))
+        {
+            foreach($this->params as $key => $value)
+            {
+                $query[$key] = $value;
+            }
         }
 
         $response = $this->client->get($url, ['query' => $query]);
@@ -99,6 +107,15 @@ class SoccerAPIClient {
 
         $this->include = $include;
 
+        return $this;
+    }
+
+    /**
+     * @param $params - array of query params
+     */
+    public function setParams(array $params)
+    {
+        $this->params = $params;
         return $this;
     }
 
