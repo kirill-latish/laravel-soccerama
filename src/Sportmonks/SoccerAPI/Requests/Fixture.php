@@ -22,6 +22,21 @@ class Fixture extends SoccerAPIClient {
         return $this->callData('fixtures/between/' . $fromDate . '/' .$toDate);
     }
 
+    public function betweenDatesTeamId($fromDate,$toDate,$teamId)
+    {
+        if($fromDate instanceof Carbon)
+        {
+            $fromDate = $fromDate->format('Y-m-d');
+        }
+
+        if($toDate instanceof Carbon)
+        {
+            $toDate = $toDate->format('Y-m-d');
+        }
+
+        return $this->callData('fixtures/between/' . $fromDate . '/' .$toDate.'/'.$teamId);
+    }
+
     public function byDate($date)
     {
         if($date instanceof Carbon)

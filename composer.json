@@ -1,7 +1,8 @@
 {
-    "name": "kirill-latish/laravel-sportmonks-soccer",
+    "name": "safiullahsarhandi/laravel-sportmonks-soccer",
     "description": "Laravel wrapper for Soccerama score API calls v2.0. Fork of rebing/laravel-soccerama",
     "keywords": ["framework", "laravel", "soccer", "live-scores"],
+    "version": "3.0.0",
     "authors": [
         {
             "name": "Rebing OÜ",
@@ -23,12 +24,12 @@
     "type": "project",
     "require": {
         "php": ">=5.6.2",
-        "illuminate/support": "~5.1",
-        "guzzlehttp/guzzle": "~6.0"
+        "illuminate/support": "~7.6",
+        "guzzlehttp/guzzle": "^6.5"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.5",
-        "laravel/laravel": "5.4"
+        "laravel/laravel": "^6.0"
     },
     "autoload": {
         "psr-0": {

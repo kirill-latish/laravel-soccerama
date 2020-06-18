@@ -3,25 +3,26 @@
 namespace Sportmonks\SoccerAPI;
 
 use Sportmonks\SoccerAPI\Requests\Bookmaker;
-use Sportmonks\SoccerAPI\Requests\Markets;
 use Sportmonks\SoccerAPI\Requests\Commentary;
+use Sportmonks\SoccerAPI\Requests\Continent;
+use Sportmonks\SoccerAPI\Requests\Country;
 use Sportmonks\SoccerAPI\Requests\Fixture;
 use Sportmonks\SoccerAPI\Requests\Head2Head;
 use Sportmonks\SoccerAPI\Requests\League;
-use Sportmonks\SoccerAPI\Requests\Continent;
-use Sportmonks\SoccerAPI\Requests\Country;
 use Sportmonks\SoccerAPI\Requests\LiveScore;
+use Sportmonks\SoccerAPI\Requests\Markets;
 use Sportmonks\SoccerAPI\Requests\Odds;
 use Sportmonks\SoccerAPI\Requests\Player;
+use Sportmonks\SoccerAPI\Requests\Prediction;
 use Sportmonks\SoccerAPI\Requests\Round;
 use Sportmonks\SoccerAPI\Requests\Season;
+use Sportmonks\SoccerAPI\Requests\Squad;
 use Sportmonks\SoccerAPI\Requests\Standings;
+use Sportmonks\SoccerAPI\Requests\TVStation;
 use Sportmonks\SoccerAPI\Requests\Team;
 use Sportmonks\SoccerAPI\Requests\TopScorer;
-use Sportmonks\SoccerAPI\Requests\TVStation;
 use Sportmonks\SoccerAPI\Requests\Venue;
 use Sportmonks\SoccerAPI\Requests\Video;
-use Sportmonks\SoccerAPI\Requests\Squad;
 
 class SoccerAPI {
 
@@ -123,6 +124,14 @@ class SoccerAPI {
     public function markets()
     {
         return new Markets();
+    }
+
+     /**
+     * @return Prediction
+     */
+    public static function predictions()
+    {
+        return new Prediction();
     }
 
 }
